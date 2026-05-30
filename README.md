@@ -28,11 +28,11 @@
 ## 🧠 Опис функціоналу
 
 -**Безпека та авторизація**: JWT-авторизація, логін через Google та Discord (OAuth 2.0).
-**Управління ініціативою**: Динамічний бойовий трекер з механікою Drag-and-Drop для зміни черги ходів.
-**Математичне прогнозування (Combat Engine)**: Серверний розрахунок очікуваної шкоди (eDPR) та часу до знищення фракцій (Time to Kill) за квадратичним законом Ланчестера.
-**Захист від метагеймінгу (Field of View)**: Алгоритм серверної приховання даних, що приховує точні значення HP та характеристики ворогів від гравців (відображення статусів на кшталт "Bloodied", "Dead").
-**Оптимізований доступ до даних**: Вирішення проблеми Overfetching через строгі LINQ-проєкції (`.Select()`) замість важких `JOIN` під час клієнтського опитування (Short-Polling).
-**Інтеграція з месенджерами**: Асинхронна пакетна відправка логів та результатів кидків у Discord Webhooks (алгоритм Batching з використанням `StringBuilder`).
+-**Управління ініціативою**: Динамічний бойовий трекер з механікою Drag-and-Drop для зміни черги ходів.
+-**Математичне прогнозування (Combat Engine)**: Серверний розрахунок очікуваної шкоди (eDPR) та часу до знищення фракцій (Time to Kill) за квадратичним законом Ланчестера.
+-**Захист від метагеймінгу (Field of View)**: Алгоритм серверної приховання даних, що приховує точні значення HP та характеристики ворогів від гравців (відображення статусів на кшталт "Bloodied", "Dead").
+-**Оптимізований доступ до даних**: Вирішення проблеми Overfetching через строгі LINQ-проєкції (`.Select()`) замість важких `JOIN` під час клієнтського опитування (Short-Polling).
+-**Інтеграція з месенджерами**: Асинхронна пакетна відправка логів та результатів кидків у Discord Webhooks (алгоритм Batching з використанням `StringBuilder`).
 
 ---
 
@@ -98,40 +98,44 @@ npm run dev
 
 ## 🔌 API приклади
 
-### 🤖 Аналіз бойового зіткнення (Combat Analytics)
+### 🔐 Авторизація (Вхід)
 
-**POST /api/encounters/{id}/analyze**
+**POST /api/auth/login**
 
-**Response:**
-
+**Request:**
 ```json
 {
-  "partySurvivalProbability": 85.5,
-  "partyTtk": 4.2,
-  "enemyTtk": 1.8,
-  "threatRatio": 2.33,
-  "verdict": "Easy Victory"
+  "email": "player@example.com",
+  "password": "MySecretPassword123"
 }
 ```
 
-### 👁️ Отримання стану бою гравцем (з працюючим FOV маскуванням)
-
-**GET /api/encounters/{id}/active**
-
 **Response:**
-
 ```json
 {
-  "participants": [
-    {
-      "id": "uuid-123",
-      "name": "Goblin",
-      "isEnemy": true,
-      "currentHp": null, 
-      "statusTag": "Bloodied", 
-      "initiativeRoll": 14
-    }
-  ]
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+### ️ Отримання списку персонажів
+
+**GET /api/characters**
+
+*(Потребує Bearer Token у заголовку Authorization)*
+
+**Response:**
+```json
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "name": "Thorin Oakenshield",
+    "race": "Dwarf",
+    "class": "Fighter",
+    "level": 5,
+    "currentHp": 45,
+    "maxHp": 45
+  }
+]
 }
 ```
 
