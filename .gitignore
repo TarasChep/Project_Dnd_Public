@@ -10,13 +10,7 @@
 !.vscode/extensions.json
 *.code-workspace
 
-# Локальні налаштування (щоб не "злити" пароль від БД)
-appsettings.Development.json
-appsettings.Local.json
 
-# Ignore application settings and secrets
-appsettings.json
-appsettings.*.json
 
 
 # Секрети та персональні дані
