@@ -1,0 +1,135 @@
+.compact-char-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: linear-gradient(160deg, #1e1e24 0%, #16161a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.25s;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.compact-char-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(187, 134, 252, 0.45);
+  box-shadow: 0 12px 28px rgba(187, 134, 252, 0.15);
+}
+
+.compact-char-card__media {
+  flex: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #0c0c0e;
+  position: relative;
+  overflow: hidden;
+}
+
+.compact-char-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.compact-char-card:hover .compact-char-card__media img {
+  transform: scale(1.05);
+}
+
+.compact-char-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(3.25rem, 52%, 5rem);
+  line-height: 1;
+  opacity: 0.35;
+}
+
+.compact-char-card__level {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  padding: 3px 7px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #bb86fc;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(187, 134, 252, 0.5);
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.compact-char-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 12px 12px;
+  min-height: 0;
+}
+
+.compact-char-card__name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #ececf1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compact-char-card__class {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: #8e8e99;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compact-char-card__player {
+  margin-top: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #bb86fc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compact-char-card__hp-wrap {
+  margin-top: 10px;
+}
+
+.compact-char-card__hp-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.compact-char-card__hp-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.compact-char-card__hp-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.35s ease;
+  box-shadow: 0 0 8px var(--hp-glow, transparent);
+}
+
+.compact-char-card__temp {
+  color: #03dac6;
+}
